@@ -16,8 +16,21 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* App Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 h1 {
   color: #2c3e50;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -190,6 +203,62 @@ tr:hover {
 .definition {
   margin-top: 5px;
   color: #34495e;
+}
+
+.status-message {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Install Button */
+.install-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.install-button:hover {
+  background-color: #357abd;
+}
+
+.install-button:active {
+  transform: translateY(1px);
+}
+
+.install-button__text {
+  font-weight: 500;
+}
+
+/* PWA specific styles */
+@media all and (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .container {
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Status bar color for iOS */
+@supports (-webkit-touch-callout: none) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 footer {
