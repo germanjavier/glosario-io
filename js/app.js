@@ -289,7 +289,6 @@ function improvePronunciation(text) {
         .replace(/\s+/g, ' ')
         .trim();
 }
-}
 
 // Función para actualizar la paginación
 function updatePagination() {
