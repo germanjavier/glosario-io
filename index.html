@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glosario Técnico</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Glosario Técnico</h1>
+    
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Buscar términos..."
+        aria-label="Buscar términos"
+      >
+    </div>
+    
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 25%;">Término</th>
+            <th style="width: 65%;">Descripción</th>
+            <th style="width: 10%;">Audio</th>
+          </tr>
+        </thead>
+        <tbody id="glossaryBody">
+          <!-- Los términos se cargarán aquí dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="pagination">
+      <button id="prevBtn" disabled>Anterior</button>
+      <span id="pageInfo" class="page-info">Página 1 de 1</span>
+      <button id="nextBtn" disabled>Siguiente</button>
+    </div>
+    
+    <audio id="player" style="display: none;"></audio>
+    <div id="status" class="status-message"></div>
+  </div>
+  <footer>
+    <p>&copy; 2025  Germán Javier. Todos los derechos reservados.</p>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+</html>

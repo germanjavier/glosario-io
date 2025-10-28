@@ -1,0 +1,52 @@
+{
+  "terms": [
+    {
+      "term": "Backend",
+      "definition": "The 'server-side' of a website, responsible for database management and logic, often utilizing PHP.",
+      "pronunciation": "/ˈbækˌɛnd/",
+      "translation": "Parte del servidor",
+      "example": "The backend handles all the database operations.",
+      "category": "Web Development"
+    },
+    {
+      "term": "API",
+      "definition": "(Application Programming Interface) A set of rules that allows two pieces of software to communicate with each other.",
+      "pronunciation": "/ˌeɪ piː ˈaɪ/",
+      "translation": "Interfaz de programación de aplicaciones",
+      "example": "The mobile app uses an API to fetch data from the server.",
+      "category": "Programming"
+    },
+    {
+      "term": "MySQL",
+      "definition": "A widely used, open-source relational database management system (RDBMS).",
+      "pronunciation": "/ˌmaɪ ˌɛs kjuː ˈɛl/",
+      "translation": "Sistema de gestión de bases de datos relacional",
+      "example": "Our application stores user data in a MySQL database.",
+      "category": "Database"
+    },
+    {
+      "term": "Viewport",
+      "definition": "The visible area of a web page on a device, crucial for Responsive Web Design.",
+      "pronunciation": "/ˈvjuːpɔːrt/",
+      "translation": "Área visible",
+      "example": "The viewport meta tag controls the layout on mobile devices.",
+      "category": "Web Design"
+    },
+    {
+      "term": "Debugging",
+      "definition": "The process of identifying, analyzing, and removing errors (bugs) from computer hardware or software.",
+      "pronunciation": "/diːˈbʌɡɪŋ/",
+      "translation": "Depuración",
+      "example": "I spent all night debugging the payment processing code.",
+      "category": "Programming"
+    },
+    {
+      "term": "Git/GitHub",
+      "definition": "Git is a version control system; GitHub is a platform used to host and collaborate on Git repositories.",
+      "pronunciation": "/ɡɪt / ˈɡɪtˌhʌb/",
+      "translation": "Sistema de control de versiones / Plataforma de alojamiento de código",
+      "example": "We use GitHub to manage our project's source code and track issues.",
+      "category": "Version Control"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario de Términos - Pronunciación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #currentTerm {
+            font-size: 24px;
+            margin: 20px 0;
+            min-height: 36px;
+        }
+        #status {
+            margin-top: 20px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Glosario de Términos</h1>
+        <div id="currentTerm">Presiona el botón para comenzar</div>
+        <button id="startBtn">Siguiente Término</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        let terms = [];
+        let currentIndex = 0;
+        const startBtn = document.getElementById('startBtn');
+        const currentTermEl = document.getElementById('currentTerm');
+        const statusEl = document.getElementById('status');
+
+        // Datos del glosario directamente en el código
+        const glossaryData = {
+            "terms": [
+                {
+                    "term": "Backend",
+                    "definition": "The 'server-side' of a website, responsible for database management and logic, often utilizing PHP.",
+                    "pronunciation": "/ˈbækˌɛnd/",
+                    "translation": "Parte del servidor",
+                    "example": "The backend handles all the database operations.",
+                    "category": "Web Development"
+                },
+                {
+                    "term": "API",
+                    "definition": "(Application Programming Interface) A set of rules that allows two pieces of software to communicate with each other.",
+                    "pronunciation": "/ˌeɪ piː ˈaɪ/",
+                    "translation": "Interfaz de programación de aplicaciones",
+                    "example": "The mobile app uses an API to fetch data from the server.",
+                    "category": "Programming"
+                },
+                {
+                    "term": "MySQL",
+                    "definition": "An open-source relational database management system.",
+                    "pronunciation": "/maɪ ˌɛskjuːˈɛl/",
+                    "translation": "Sistema de gestión de bases de datos relacional",
+                    "example": "We store all our user data in a MySQL database.",
+                    "category": "Database"
+                }
+            ]
+        };
+
+        // Cargar el glosario
+        function loadGlossary() {
+            try {
+                console.log('Términos cargados:', glossaryData.terms);
+                return glossaryData.terms;
+            } catch (error) {
+                console.error('Error al cargar el glosario:', error);
+                statusEl.textContent = `Error al cargar el glosario: ${error.message}`;
+                return [];
+            }
+        }
+
+        // Pronunciar término (solo la pronunciación)
+        function speakTerm(text) {
+            if (!window.speechSynthesis) {
+                statusEl.textContent = 'La API de síntesis de voz no es compatible con este navegador';
+                return;
+            }
+
+            // Detener cualquier reproducción en curso
+            window.speechSynthesis.cancel();
+
+            // Crear y configurar el mensaje de voz
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Configuración de voz
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8;  // Un poco más lento para mejor claridad
+            utterance.pitch = 1.0;
+
+            // Actualizar estado
+            statusEl.textContent = 'Reproduciendo...';
+
+            // Manejar eventos
+            utterance.onend = function() {
+                statusEl.textContent = 'Listo';
+                // Avanzar al siguiente término automáticamente después de un breve retraso
+                setTimeout(() => {
+                    currentIndex++;
+                    if (currentIndex >= terms.length) currentIndex = 0;
+                    startBtn.click();
+                }, 1000);
+            };
+
+            utterance.onerror = function(event) {
+                console.error('Error al reproducir:', event);
+                statusEl.textContent = 'Error al reproducir el audio';
+            };
+
+            // Reproducir
+            window.speechSynthesis.speak(utterance);
+        }
+
+        /* 
+        Nota sobre la carga de JSON:
+        - No funciona con file:/// por restricciones de seguridad del navegador (CORS)
+        - Funcionará correctamente cuando se sirva a través de un servidor web (http:// o https://)
+        - Alternativamente, puedes usar un servidor local como 'python3 -m http.server' o 'php -S localhost:8000'
+        */
+        
+        // Inicializar la aplicación
+        async function init() {
+            terms = await loadGlossary();
+            
+            if (terms.length === 0) {
+                statusEl.textContent = 'No se encontraron términos en el glosario';
+                startBtn.disabled = true;
+                return;
+            }
+
+            // Mezclar los términos para variar el orden
+            terms = terms.sort(() => Math.random() - 0.5);
+            
+            startBtn.addEventListener('click', () => {
+                if (currentIndex >= terms.length) {
+                    currentIndex = 0; // Volver al principio si llegamos al final
+                }
+                
+                const currentTerm = terms[currentIndex];
+                // Mostrar toda la información
+                const displayText = `${currentTerm.term} (${currentTerm.pronunciation}): ${currentTerm.definition}`;
+                currentTermEl.textContent = displayText;
+                
+                // Pronunciar solo la pronunciación si existe, de lo contrario el término
+                const textToSpeak = currentTerm.pronunciation || currentTerm.term;
+                speakTerm(textToSpeak);
+                
+                currentIndex++;
+                
+                // Si llegamos al final, volver al principio
+                if (currentIndex >= terms.length) {
+                    currentIndex = 0;
+                }
+            });
+
+            // Habilitar el botón una vez cargado todo
+            startBtn.disabled = false;
+            startBtn.textContent = 'Siguiente Término';
+        }
+
+        // Iniciar cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
