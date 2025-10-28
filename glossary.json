@@ -9,11 +9,35 @@
       "category": "Web Development"
     },
     {
+      "term": "Frontend",
+      "definition": "The 'client-side' part of a website that users interact with directly, including layout, design, and user experience.",
+      "pronunciation": "/ˈfrʌntˌɛnd/",
+      "translation": "Parte del cliente",
+      "example": "The frontend was built using React and Tailwind CSS.",
+      "category": "Web Development"
+    },
+    {
       "term": "API",
       "definition": "(Application Programming Interface) A set of rules that allows two pieces of software to communicate with each other.",
       "pronunciation": "/ˌeɪ piː ˈaɪ/",
       "translation": "Interfaz de programación de aplicaciones",
       "example": "The mobile app uses an API to fetch data from the server.",
+      "category": "Programming"
+    },
+    {
+      "term": "REST API",
+      "definition": "An API that follows REST (Representational State Transfer) principles for communication between client and server.",
+      "pronunciation": "/rɛst ˈeɪ piː aɪ/",
+      "translation": "API basada en REST",
+      "example": "Our app consumes a REST API to retrieve product data.",
+      "category": "Programming"
+    },
+    {
+      "term": "JSON",
+      "definition": "A lightweight data-interchange format that is easy for humans to read and for machines to parse.",
+      "pronunciation": "/ˈdʒeɪsən/",
+      "translation": "Formato de intercambio de datos",
+      "example": "The API response was returned in JSON format.",
       "category": "Programming"
     },
     {
@@ -25,12 +49,36 @@
       "category": "Database"
     },
     {
-      "term": "Viewport",
-      "definition": "The visible area of a web page on a device, crucial for Responsive Web Design.",
-      "pronunciation": "/ˈvjuːpɔːrt/",
-      "translation": "Área visible",
-      "example": "The viewport meta tag controls the layout on mobile devices.",
-      "category": "Web Design"
+      "term": "NoSQL",
+      "definition": "A type of database that stores data in non-relational formats like documents or key-value pairs.",
+      "pronunciation": "/ˌnoʊ ˌɛs kjuː ˈɛl/",
+      "translation": "Base de datos no relacional",
+      "example": "MongoDB is a popular NoSQL database used in MERN applications.",
+      "category": "Database"
+    },
+    {
+      "term": "Component",
+      "definition": "A reusable piece of UI that can be combined with others to build complex interfaces.",
+      "pronunciation": "/kəmˈpoʊnənt/",
+      "translation": "Componente",
+      "example": "Each button in the app is a separate React component.",
+      "category": "Web Development"
+    },
+    {
+      "term": "Framework",
+      "definition": "A pre-built structure that provides tools and libraries to speed up software development.",
+      "pronunciation": "/ˈfreɪmˌwɜːrk/",
+      "translation": "Marco de trabajo",
+      "example": "Next.js is a popular framework for building React applications.",
+      "category": "Programming"
+    },
+    {
+      "term": "Middleware",
+      "definition": "Software that acts as a bridge between the operating system and applications, or between different layers of an app.",
+      "pronunciation": "/ˈmɪdəlˌwɛər/",
+      "translation": "Intermediario de software",
+      "example": "Authentication middleware checks if a user is logged in before accessing routes.",
+      "category": "Programming"
     },
     {
       "term": "Debugging",
@@ -47,6 +95,110 @@
       "translation": "Sistema de control de versiones / Plataforma de alojamiento de código",
       "example": "We use GitHub to manage our project's source code and track issues.",
       "category": "Version Control"
+    },
+    {
+      "term": "Branch",
+      "definition": "A separate line of development in Git that allows you to work on features without affecting the main codebase.",
+      "pronunciation": "/bræntʃ/",
+      "translation": "Rama",
+      "example": "Create a new branch for each feature you develop.",
+      "category": "Version Control"
+    },
+    {
+      "term": "Merge",
+      "definition": "Combining changes from one branch into another in a version control system.",
+      "pronunciation": "/mɜːrdʒ/",
+      "translation": "Fusionar",
+      "example": "We merged the feature branch into the main branch.",
+      "category": "Version Control"
+    },
+    {
+      "term": "Viewport",
+      "definition": "The visible area of a web page on a device, crucial for Responsive Web Design.",
+      "pronunciation": "/ˈvjuːpɔːrt/",
+      "translation": "Área visible",
+      "example": "The viewport meta tag controls the layout on mobile devices.",
+      "category": "Web Design"
+    },
+    {
+      "term": "Responsive Design",
+      "definition": "An approach to web design that ensures web pages render well on various devices and screen sizes.",
+      "pronunciation": "/rɪˈspɒnsɪv dɪˈzaɪn/",
+      "translation": "Diseño adaptable",
+      "example": "Responsive design improves the user experience on mobile devices.",
+      "category": "Web Design"
+    },
+    {
+      "term": "CSS Grid",
+      "definition": "A CSS layout system that provides a powerful way to arrange elements in rows and columns.",
+      "pronunciation": "/siː ɛs ɛs ɡrɪd/",
+      "translation": "Sistema de cuadrícula en CSS",
+      "example": "We used CSS Grid to align items perfectly in the layout.",
+      "category": "Web Design"
+    },
+    {
+      "term": "Deployment",
+      "definition": "The process of moving an application from a local environment to a live server or production environment.",
+      "pronunciation": "/dɪˈplɔɪmənt/",
+      "translation": "Despliegue",
+      "example": "The new version of the app was deployed on Vercel.",
+      "category": "Web Development"
+    },
+    {
+      "term": "Docker",
+      "definition": "A platform for developing, shipping, and running applications inside lightweight containers.",
+      "pronunciation": "/ˈdɒkər/",
+      "translation": "Plataforma de contenedores",
+      "example": "We use Docker to ensure consistent environments across machines.",
+      "category": "DevOps"
+    },
+    {
+      "term": "Container",
+      "definition": "A lightweight, standalone package that includes everything needed to run a piece of software.",
+      "pronunciation": "/kənˈteɪnər/",
+      "translation": "Contenedor",
+      "example": "Each microservice runs in its own container.",
+      "category": "DevOps"
+    },
+    {
+      "term": "Kubernetes",
+      "definition": "An open-source system for automating deployment, scaling, and management of containerized applications.",
+      "pronunciation": "/ˌkuːbərˈneɪtɪz/",
+      "translation": "Sistema de orquestación de contenedores",
+      "example": "Kubernetes manages our containerized applications efficiently.",
+      "category": "DevOps"
+    },
+    {
+      "term": "CI/CD",
+      "definition": "Continuous Integration and Continuous Deployment; a method to automate testing and deployment processes.",
+      "pronunciation": "/siː aɪ siː diː/",
+      "translation": "Integración y entrega continua",
+      "example": "We use GitHub Actions for our CI/CD pipeline.",
+      "category": "DevOps"
+    },
+    {
+      "term": "AWS",
+      "definition": "Amazon Web Services; a comprehensive cloud platform offering computing, storage, and networking services.",
+      "pronunciation": "/ˌeɪ dʌbəljuː ˈɛs/",
+      "translation": "Servicios web de Amazon",
+      "example": "The app’s backend is hosted on AWS EC2.",
+      "category": "Cloud"
+    },
+    {
+      "term": "Cloud Computing",
+      "definition": "The delivery of computing services over the internet instead of local servers or personal devices.",
+      "pronunciation": "/klaʊd kəmˈpjuːtɪŋ/",
+      "translation": "Computación en la nube",
+      "example": "Cloud computing allows scalability and cost efficiency.",
+      "category": "Cloud"
+    },
+    {
+      "term": "Serverless",
+      "definition": "A cloud computing model where the cloud provider dynamically manages server allocation.",
+      "pronunciation": "/ˈsɜːrvərləs/",
+      "translation": "Sin servidor",
+      "example": "We use serverless functions for lightweight API endpoints.",
+      "category": "Cloud"
     }
   ]
 }
