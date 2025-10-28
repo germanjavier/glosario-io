@@ -31,65 +31,74 @@ function initializeVoices() {
     });
 }
 
-// Función para encontrar la mejor voz (femenina, natural, en inglés)
+// Función para encontrar la mejor voz disponible
 function findBestVoice() {
-    // Priorizar voces femeninas naturales en inglés
-    const preferredVoices = [
-        // Voces femeninas de alta calidad
+    if (!availableVoices || availableVoices.length === 0) {
+        console.warn('No hay voces disponibles');
+        return null;
+    }
+
+    // Lista priorizada de voces preferidas (más naturales y claras)
+    const voicePreferences = [
+        // Voces de alta calidad (más naturales)
         { name: 'Google UK English Female', lang: 'en-GB' },
         { name: 'Microsoft Zira Desktop', lang: 'en-US' },
+        { name: 'Microsoft Hazel Desktop', lang: 'en-GB' },
         { name: 'Karen', lang: 'en-AU' },
         { name: 'Samantha', lang: 'en-US' },
         { name: 'Victoria', lang: 'en-US' },
         { name: 'Moira', lang: 'en-IE' },
         { name: 'Tessa', lang: 'en-ZA' },
-        // Voces genéricas femeninas
-        { name: 'female', lang: 'en' },
-        { name: 'woman', lang: 'en' }
+        { name: 'Fiona', lang: 'en-scotland' },
+        { name: 'Serena', lang: 'en-GB' },
+        
+        // Patrones de voces femeninas
+        { name: 'female', lang: 'en', type: 'pattern' },
+        { name: 'woman', lang: 'en', type: 'pattern' },
+        { name: 'zira', lang: 'en', type: 'pattern' },
+        
+        // Cualquier voz en inglés
+        { lang: 'en', type: 'lang' },
+        
+        // Cualquier voz disponible
+        { type: 'any' }
     ];
 
-    // Buscar voces preferidas
-    for (const preferred of preferredVoices) {
-        const foundVoice = availableVoices.find(voice => 
-            voice.name.toLowerCase().includes(preferred.name.toLowerCase()) &&
-            voice.lang.startsWith('en')
-        );
+    // Buscar según preferencias
+    for (const pref of voicePreferences) {
+        let foundVoice = null;
+        
+        if (pref.name && pref.lang && pref.type === 'pattern') {
+            // Buscar por patrón en el nombre y en el idioma
+            foundVoice = availableVoices.find(voice => 
+                voice.name.toLowerCase().includes(pref.name.toLowerCase()) &&
+                voice.lang.startsWith(pref.lang)
+            );
+        } else if (pref.name && pref.lang) {
+            // Búsqueda exacta por nombre e idioma
+            foundVoice = availableVoices.find(voice => 
+                voice.name === pref.name && 
+                voice.lang === pref.lang
+            );
+        } else if (pref.lang) {
+            // Cualquier voz en el idioma especificado
+            foundVoice = availableVoices.find(voice => 
+                voice.lang.startsWith(pref.lang)
+            );
+        } else if (pref.type === 'any') {
+            // Cualquier voz disponible
+            foundVoice = availableVoices[0];
+        }
+
         if (foundVoice) {
-            console.log('Voz seleccionada:', foundVoice.name);
+            console.log('Voz seleccionada:', `${foundVoice.name} (${foundVoice.lang})`);
             return foundVoice;
         }
     }
 
-    // Fallback: cualquier voz femenina en inglés
-    const femaleVoice = availableVoices.find(voice => 
-        voice.lang.startsWith('en') && 
-        (voice.name.toLowerCase().includes('female') || 
-         voice.name.toLowerCase().includes('woman') ||
-         voice.name.toLowerCase().includes('samantha') ||
-         voice.name.toLowerCase().includes('victoria') ||
-         voice.name.toLowerCase().includes('zira'))
-    );
-    
-    if (femaleVoice) {
-        console.log('Voz femenina encontrada:', femaleVoice.name);
-        return femaleVoice;
-    }
-
-    // Fallback final: primera voz en inglés
-    const englishVoice = availableVoices.find(voice => voice.lang.startsWith('en'));
-    if (englishVoice) {
-        console.log('Voz en inglés encontrada:', englishVoice.name);
-        return englishVoice;
-    }
-
-    // Último fallback: primera voz disponible
-    if (availableVoices.length > 0) {
-        console.log('Usando voz por defecto:', availableVoices[0].name);
-        return availableVoices[0];
-    }
-
-    console.warn('No se encontraron voces disponibles');
-    return null;
+    // Si no se encontró ninguna voz, devolver la primera disponible
+    console.warn('Usando la primera voz disponible:', availableVoices[0].name);
+    return availableVoices[0];
 }
 
 // Función para cargar el glosario
@@ -178,7 +187,7 @@ function addButtonListeners() {
     });
 }
 
-// Función mejorada para pronunciar el término
+// Función mejorada para pronunciar el término con la mejor calidad posible
 function speakTerm(term) {
     console.log('🔊 Pronunciando:', term);
     
@@ -191,45 +200,95 @@ function speakTerm(term) {
         status.className = 'speaking';
     }
     
-    // Crear el mensaje de voz con configuración mejorada
-    const message = new SpeechSynthesisUtterance(term);
-    
-    // Configuración optimizada para claridad y naturalidad
-    message.lang = 'en-US';
-    message.rate = 0.85;    // Velocidad ligeramente más lenta para mejor comprensión
-    message.pitch = 1.1;    // Tono ligeramente más alto (más femenino)
-    message.volume = 1.0;   // Volumen máximo
-    
-    // Seleccionar la mejor voz disponible
-    const selectedVoice = findBestVoice();
-    if (selectedVoice) {
-        message.voice = selectedVoice;
-    }
-    
-    // Evento cuando comienza la reproducción
-    message.onstart = function() {
-        console.log('▶️ Iniciando reproducción con voz:', selectedVoice ? selectedVoice.name : 'por defecto');
-    };
-    
-    // Reproducir
-    speechSynthesis.speak(message);
-    
-    // Cuando termine la reproducción
-    message.onend = function() {
-        console.log('✅ Reproducción completada');
-        if (status) {
-            status.textContent = 'Listo';
-            status.className = '';
+    try {
+        // Crear el mensaje de voz con configuración mejorada
+        const message = new SpeechSynthesisUtterance(term);
+        
+        // Configuración optimizada para máxima claridad y naturalidad
+        message.rate = 0.9;      // Velocidad ligeramente más lenta para mejor comprensión
+        message.pitch = 1.05;    // Tono ligeramente más alto para mayor claridad
+        message.volume = 1.0;    // Volumen máximo
+        
+        // Seleccionar la mejor voz disponible
+        const selectedVoice = findBestVoice();
+        if (selectedVoice) {
+            message.voice = selectedVoice;
+            message.lang = selectedVoice.lang; // Usar el idioma de la voz seleccionada
+        } else {
+            // Si no se encontró ninguna voz, usar configuración por defecto
+            message.lang = 'en-US';
+            console.warn('Usando configuración de voz por defecto');
         }
-    };
-    
-    message.onerror = function(event) {
-        console.error('❌ Error al reproducir:', event);
+        
+        // Mejorar la pronunciación de términos técnicos
+        message.text = improvePronunciation(term);
+        
+        // Evento cuando comienza la reproducción
+        message.onstart = function() {
+            console.log('▶️ Reproduciendo con voz:', selectedVoice ? 
+                `${selectedVoice.name} (${selectedVoice.lang})` : 'por defecto');
+        };
+        
+        // Cuando termine la reproducción
+        message.onend = function() {
+            console.log('✅ Reproducción completada');
+            if (status) {
+                status.textContent = 'Listo';
+                status.className = '';
+            }
+        };
+        
+        // Manejo de errores mejorado
+        message.onerror = function(event) {
+            console.error('❌ Error al reproducir:', event);
+            if (status) {
+                status.textContent = 'Error al reproducir el audio';
+                status.className = 'error';
+            }
+            
+            // Intentar con una configuración más básica en caso de error
+            if (event.error === 'synthesis-failed') {
+                console.log('Intentando con configuración alternativa...');
+                message.rate = 1.0;
+                message.pitch = 1.0;
+                speechSynthesis.speak(message);
+            }
+        };
+        
+        // Reproducir el mensaje
+        speechSynthesis.speak(message);
+        
+    } catch (error) {
+        console.error('Error crítico al reproducir el audio:', error);
         if (status) {
-            status.textContent = 'Error al reproducir el audio';
+            status.textContent = 'Error crítico al reproducir el audio';
             status.className = 'error';
         }
-    };
+    }
+}
+
+// Función para mejorar la pronunciación de términos técnicos
+function improvePronunciation(text) {
+    // Reemplazar caracteres especiales y mejorar pronunciación
+    return text
+        // Reemplazar guiones bajos por espacios
+        .replace(/_/g, ' ')
+        // Mejorar pronunciación de siglas comunes
+        .replace(/\b(API)\b/gi, 'A P I')
+        .replace(/\b(URL)\b/gi, 'U R L')
+        .replace(/\b(HTTP)\b/gi, 'H T T P')
+        .replace(/\b(HTTPS)\b/gi, 'H T T P S')
+        .replace(/\b(HTML)\b/gi, 'H T M L')
+        .replace(/\b(CSS)\b/gi, 'C S S')
+        .replace(/\b(JS)\b/gi, 'JavaScript')
+        .replace(/\b(JSON)\b/gi, 'Jason')
+        .replace(/\b(UI)\b/gi, 'U I')
+        .replace(/\b(UX)\b/gi, 'U X')
+        // Asegurar que los números se lean correctamente
+        .replace(/(\d+)/g, ' $1 ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
 }
 
 // Función para actualizar la paginación
