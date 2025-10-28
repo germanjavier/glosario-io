@@ -13,7 +13,7 @@ Un glosario interactivo de términos técnicos con funcionalidad de búsqueda y 
 ## Requisitos
 
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
-- Python 3.6 o superior (para el servidor de desarrollo)
+- Node.js (para el servidor de desarrollo)
 
 ## Instalación
 
@@ -23,14 +23,19 @@ Un glosario interactivo de términos técnicos con funcionalidad de búsqueda y 
    cd glosario-io
    ```
 
-2. Inicia el servidor de desarrollo:
+2. Instala las dependencias:
    ```bash
-   python -m http.server 8000
+   npm install
    ```
 
-3. Abre tu navegador y visita:
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm start
    ```
-   http://localhost:8000
+
+4. Abre tu navegador y visita:
+   ```
+   http://localhost:3000
    ```
 
 ## Uso

@@ -3,6 +3,7 @@ const ITEMS_PER_PAGE = 5;
 let currentPage = 1;
 let filteredGlossary = [];
 let glossary = [];
+let availableVoices = [];
 
 // DOM Elements
 const glossaryBody = document.getElementById('glossaryBody');
@@ -11,6 +12,85 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const pageInfo = document.getElementById('pageInfo');
 const status = document.getElementById('status');
+
+// Función para cargar y configurar las voces
+function initializeVoices() {
+    return new Promise((resolve) => {
+        const voices = speechSynthesis.getVoices();
+        if (voices.length > 0) {
+            availableVoices = voices;
+            console.log('Voces disponibles:', voices.map(v => `${v.name} (${v.lang})`));
+            resolve();
+        } else {
+            speechSynthesis.onvoiceschanged = () => {
+                availableVoices = speechSynthesis.getVoices();
+                console.log('Voces cargadas:', availableVoices.map(v => `${v.name} (${v.lang})`));
+                resolve();
+            };
+        }
+    });
+}
+
+// Función para encontrar la mejor voz (femenina, natural, en inglés)
+function findBestVoice() {
+    // Priorizar voces femeninas naturales en inglés
+    const preferredVoices = [
+        // Voces femeninas de alta calidad
+        { name: 'Google UK English Female', lang: 'en-GB' },
+        { name: 'Microsoft Zira Desktop', lang: 'en-US' },
+        { name: 'Karen', lang: 'en-AU' },
+        { name: 'Samantha', lang: 'en-US' },
+        { name: 'Victoria', lang: 'en-US' },
+        { name: 'Moira', lang: 'en-IE' },
+        { name: 'Tessa', lang: 'en-ZA' },
+        // Voces genéricas femeninas
+        { name: 'female', lang: 'en' },
+        { name: 'woman', lang: 'en' }
+    ];
+
+    // Buscar voces preferidas
+    for (const preferred of preferredVoices) {
+        const foundVoice = availableVoices.find(voice => 
+            voice.name.toLowerCase().includes(preferred.name.toLowerCase()) &&
+            voice.lang.startsWith('en')
+        );
+        if (foundVoice) {
+            console.log('Voz seleccionada:', foundVoice.name);
+            return foundVoice;
+        }
+    }
+
+    // Fallback: cualquier voz femenina en inglés
+    const femaleVoice = availableVoices.find(voice => 
+        voice.lang.startsWith('en') && 
+        (voice.name.toLowerCase().includes('female') || 
+         voice.name.toLowerCase().includes('woman') ||
+         voice.name.toLowerCase().includes('samantha') ||
+         voice.name.toLowerCase().includes('victoria') ||
+         voice.name.toLowerCase().includes('zira'))
+    );
+    
+    if (femaleVoice) {
+        console.log('Voz femenina encontrada:', femaleVoice.name);
+        return femaleVoice;
+    }
+
+    // Fallback final: primera voz en inglés
+    const englishVoice = availableVoices.find(voice => voice.lang.startsWith('en'));
+    if (englishVoice) {
+        console.log('Voz en inglés encontrada:', englishVoice.name);
+        return englishVoice;
+    }
+
+    // Último fallback: primera voz disponible
+    if (availableVoices.length > 0) {
+        console.log('Usando voz por defecto:', availableVoices[0].name);
+        return availableVoices[0];
+    }
+
+    console.warn('No se encontraron voces disponibles');
+    return null;
+}
 
 // Función para cargar el glosario
 async function loadGlossary() {
@@ -98,9 +178,12 @@ function addButtonListeners() {
     });
 }
 
-// Función para pronunciar el término - SEGÚN TU EJEMPLO
+// Función mejorada para pronunciar el término
 function speakTerm(term) {
-    console.log('Pronunciando:', term);
+    console.log('🔊 Pronunciando:', term);
+    
+    // Detener cualquier reproducción anterior
+    speechSynthesis.cancel();
     
     // Actualizar estado
     if (status) {
@@ -108,16 +191,32 @@ function speakTerm(term) {
         status.className = 'speaking';
     }
     
-    // Crear el mensaje de voz
+    // Crear el mensaje de voz con configuración mejorada
     const message = new SpeechSynthesisUtterance(term);
+    
+    // Configuración optimizada para claridad y naturalidad
     message.lang = 'en-US';
-    message.rate = 0.8;
+    message.rate = 0.85;    // Velocidad ligeramente más lenta para mejor comprensión
+    message.pitch = 1.1;    // Tono ligeramente más alto (más femenino)
+    message.volume = 1.0;   // Volumen máximo
+    
+    // Seleccionar la mejor voz disponible
+    const selectedVoice = findBestVoice();
+    if (selectedVoice) {
+        message.voice = selectedVoice;
+    }
+    
+    // Evento cuando comienza la reproducción
+    message.onstart = function() {
+        console.log('▶️ Iniciando reproducción con voz:', selectedVoice ? selectedVoice.name : 'por defecto');
+    };
     
     // Reproducir
     speechSynthesis.speak(message);
     
     // Cuando termine la reproducción
     message.onend = function() {
+        console.log('✅ Reproducción completada');
         if (status) {
             status.textContent = 'Listo';
             status.className = '';
@@ -125,9 +224,9 @@ function speakTerm(term) {
     };
     
     message.onerror = function(event) {
-        console.error('Error al reproducir:', event);
+        console.error('❌ Error al reproducir:', event);
         if (status) {
-            status.textContent = 'Error al reproducir';
+            status.textContent = 'Error al reproducir el audio';
             status.className = 'error';
         }
     };
@@ -158,7 +257,12 @@ function changePage(direction) {
 // Inicializar la aplicación
 async function initApp() {
     try {
-        // Cargar datos
+        console.log('🚀 Inicializando aplicación...');
+        
+        // Inicializar voces primero
+        await initializeVoices();
+        
+        // Cargar datos del glosario
         glossary = await loadGlossary();
         filteredGlossary = [...glossary];
         
@@ -177,10 +281,11 @@ async function initApp() {
         prevBtn.addEventListener('click', () => changePage('prev'));
         nextBtn.addEventListener('click', () => changePage('next'));
         
-        console.log('Aplicación inicializada correctamente');
+        console.log('✅ Aplicación inicializada correctamente');
+        console.log('🎯 Voces disponibles:', availableVoices.length);
         
     } catch (error) {
-        console.error('Error al inicializar la aplicación:', error);
+        console.error('❌ Error al inicializar la aplicación:', error);
     }
 }
 
