@@ -27,11 +27,25 @@ body {
   background: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  display: flex;
-  justify-content: space-between;
+  padding: 4px 20px; /* Reduced vertical padding */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 10px 20px;
-  gap: 15px;
+  min-height: 48px; /* Reduced height */
+}
+
+/* Logo styles */
+.logo-container {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  padding-left: 4px; /* Small adjustment for visual balance */
+}
+
+.logo {
+  height: 28px; /* Slightly smaller logo */
+  width: auto;
+  max-height: 32px; /* Reduced maximum height */
 }
 
 
@@ -104,8 +118,10 @@ h1 {
 /* Header search container (visible) */
 .app-header .search-container {
   display: block !important; /* Override any other rules */
-  margin: 0 auto; /* Center the search bar */
-  width: auto; /* Let it take the width of its content */
+  width: 100%;
+  max-width: 500px; /* Adjust based on your preference */
+  margin: 0 auto;
+  grid-column: 2; /* Place in the center column */
 }
 
 table {
@@ -266,6 +282,8 @@ tr:hover {
 
 /* Install Button */
 .install-button {
+  justify-self: end;
+  margin-left: auto;
   background-color: #4a90e2;
   color: white;
   border: none;
