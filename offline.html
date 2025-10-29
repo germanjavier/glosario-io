@@ -37,15 +37,31 @@
       margin-bottom: 1rem;
       color: #e74c3c;
     }
+
+    .btn-volver {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-volver:hover {
+      background-color: #2980b9;
+    }
+
   </style>
 </head>
 <body>
   <div class="container">
     <div class="offline-icon"></div>
-    <h1>Sin conexión</h1>
+    <h1>Sin conexión :(</h1>
     <p>Parece que no tienes conexión a Internet. Por favor, verifica tu conexión y vuelve a intentarlo.</p>
     <p>Puedes seguir usando el glosario con las palabras que ya se han cargado anteriormente.</p>
-    <button onclick="window.location.href='/'">Volver al inicio</button>
+    <button onclick="window.location.href='/'" class="btn-volver">Volver al inicio</button>
   </div>
 </body>
 </html>

@@ -4,32 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#4a90e2">
-  <meta name="description" content="Glosario técnico con pronunciación">
-  <title>Glosario Técnico</title>
+  <!-- Primary Meta Tags -->
+  <title>Glosario de inglés técnico</title>
+  <meta name="title" content="Glosario de inglés técnico" />
+  <meta name="description" content="Glosario técnico con pronunciación de palabras." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://germanjavier.github.io/glosario-io/" />
+  <meta property="og:title" content="Glosario de inglés técnico" />
+  <meta property="og:description" content="Glosario técnico con pronunciación de palabras." />
+  <meta property="og:image" content="https://germanjavier.github.io/glosario-io/images/glosari-logo.png" />
+
+  <!-- X (Twitter) -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://germanjavier.github.io/glosario-io/" />
+  <meta property="twitter:title" content="Glosario de inglés técnico" />
+  <meta property="twitter:description" content="Glosario técnico con pronunciación de palabras." />
+  <meta property="twitter:image" content="https://germanjavier.github.io/glosario-io/images/glosari-logo.png" />
+
+  <!-- Meta Tags Generated with https://metatags.io -->
+
   <link rel="stylesheet" href="css/styles.css">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="images/icon-192x192.png">
   <link rel="icon" href="images/icon-192x192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Glosario">
+  <meta name="apple-mobile-web-app-title" content="Glosario de inglés técnico">
 </head>
 <body>
   <div class="container">
     <header class="app-header">
-      <h1>Glosario Técnico</h1>
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Buscar términos..."
+          aria-label="Buscar términos"
+        >
+      </div>
       <button id="installButton" class="install-button" aria-label="Instalar aplicación">
         <span class="install-button__text">Instalar</span>
       </button>
     </header>
     
-    <div class="search-container">
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="Buscar términos..."
-        aria-label="Buscar términos"
-      >
+    <div class="introduction">
+      <p>Bienvenido al Glosario de inglés técnico. Aquí podrás encontrar términos técnicos en inglés con su pronunciación y definición en español.</p>
+      <p>Para comenzar, utiliza el buscador para encontrar términos específicos o explora la lista de términos disponibles. Haz clic en el ícono de audio para escuchar la pronunciación de cada palabra.</p>
+      <p class="contribution-note">¿Eres desarrollador y quieres colaborar? ¡Puedes ayudarnos agregando términos que conozcas! Visita nuestro <a href="https://github.com/germanjavier/glosario-io" target="_blank" rel="noopener noreferrer">repositorio en GitHub</a> para más información sobre cómo contribuir.</p>
     </div>
     
     <div class="table-responsive">
@@ -57,7 +80,7 @@
     <div id="status" class="status-message"></div>
   </div>
   <footer>
-    <p>&copy; 2025  Germán Javier. Todos los derechos reservados.</p>
+    <p>&copy; 2025  <a href="https://germanjavier.github.io/site/">Germán Javier</a>. Todos los derechos reservados.</p>
   </footer>
   <script src="js/app.js"></script>
   <script>

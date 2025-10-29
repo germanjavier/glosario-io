@@ -46,23 +46,51 @@ Un glosario interactivo de términos técnicos con funcionalidad de búsqueda y 
 
 ## Estructura del Proyecto
 
-```
+```text
 glosario-io/
 ├── css/
 │   └── styles.css       # Estilos CSS
 ├── js/
 │   └── app.js          # Lógica de la aplicación
-├── data/
-│   └── glossary.json   # Términos del glosario
+├── images/             # Imágenes e iconos
+│   ├── glosari-logo.png
+│   ├── icon-192x192.png
+│   └── icon-512x512.png
+├── glossary.json       # Términos del glosario
 ├── index.html          # Página principal
-├── CONTRIBUTING.md     # Guía de contribución
-├── LICENSE            # Licencia del proyecto
-└── README.md          # Este archivo
+├── offline.html        # Página offline
+├── manifest.json       # Configuración PWA
+├── package.json        # Dependencias del proyecto
+├── package-lock.json   # Versiones de dependencias
+├── sw.js              # Service Worker
+└── README.md          # Documentación del proyecto
 ```
 
 ## Contribución
 
-¡Las contribuciones son bienvenidas! Por favor, lee [CONTRIBUTING.md](CONTRIBUTING.md) antes de enviar un pull request.
+¡Las contribuciones son bienvenidas! Si eres desarrollador y quieres ayudar a mejorar este glosario, sigue estos pasos:
+
+1. Haz un fork del repositorio
+2. Crea una rama para tu contribución: `git checkout -b mi-contribucion`
+3. Añade los términos técnicos que conozcas en el archivo `glossary.json` siguiendo el formato existente:
+   ```json
+   {
+     "term": "Término en inglés",
+     "translation": "Traducción al español",
+     "pronunciation": "Pronunciación fonética",
+     "definition": "Definición detallada",
+     "example": "Ejemplo de uso",
+     "category": "Categoría del término"
+   }
+   ```
+4. Asegúrate de que los términos estén ordenados alfabéticamente
+5. Haz commit de tus cambios: `git commit -am 'Añadido término: [término]'`
+6. Haz push a la rama: `git push origin mi-contribucion`
+7. Abre un Pull Request
+
+Por favor, asegúrate de que la información sea precisa y esté correctamente formateada.
+
+## Agradecimientos
 
 ## Licencia
 
@@ -75,7 +103,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 ## Agradecimientos
 
-- Iconos de [Phosphor Icons](https://iconify.design/)
+- Iconos de [Iconify](https://iconify.design/)
 - Fuentes del sistema para mejor rendimiento
 
 ---

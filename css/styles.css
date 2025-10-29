@@ -1,10 +1,11 @@
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   line-height: 1.6;
   color: #333;
   background-color: #f9f9f9;
+  padding-top: 70px; /* Reduced space for the header */
 }
 
 .container {
@@ -14,16 +15,40 @@ body {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 0;
 }
 
 /* App Header */
 .app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  padding: 10px 20px;
+  gap: 15px;
+}
+
+
+.app-header #searchInput {
+  min-width: 250px; /* Fixed width instead of 100% */
+  padding: 6px 12px; /* Slightly smaller padding */
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Less rounded corners */
+  font-size: 14px; /* Slightly smaller font */
+  transition: border-color 0.3s, box-shadow 0.3s;
+  max-width: 100%; /* Ensure it's responsive */
+}
+
+.app-header #searchInput:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
 
 h1 {
@@ -32,28 +57,55 @@ h1 {
   flex: 1;
   min-width: 200px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
+.introduction {
+  background-color: #f8faff;
+  border-left: 4px solid #4a90e2;
+  padding: 15px 20px;
+  margin: 0 0 25px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.introduction p {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+.introduction p:last-child {
+  margin-bottom: 0;
+}
+
+.contribution-note {
+  margin-top: 15px !important;
+  padding-top: 10px;
+  border-top: 1px solid #e0e8f0;
+  font-size: 0.95em;
+  color: #4a5568;
+}
+
+.contribution-note a {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contribution-note a:hover {
+  text-decoration: underline;
+}
+
+/* Search container in main content (hidden) */
 .search-container {
-  margin-bottom: 30px;
-  display: flex;
-  gap: 10px;
+  display: none;
 }
 
-#searchInput {
-  flex: 1;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  transition: border-color 0.3s;
-}
-
-#searchInput:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+/* Header search container (visible) */
+.app-header .search-container {
+  display: block !important; /* Override any other rules */
+  margin: 0 auto; /* Center the search bar */
+  width: auto; /* Let it take the width of its content */
 }
 
 table {

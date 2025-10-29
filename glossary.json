@@ -199,6 +199,174 @@
       "translation": "Sin servidor",
       "example": "We use serverless functions for lightweight API endpoints.",
       "category": "Cloud"
+    },
+    {
+      "term": "ORM",
+      "definition": "(Object-Relational Mapping) A technique for converting data between incompatible type systems in object-oriented programming.",
+      "pronunciation": "/ˌoʊ ɑːr ˈɛm/",
+      "translation": "Mapeo objeto-relacional",
+      "example": "Sequelize is a popular ORM for Node.js and SQL databases.",
+      "category": "Database"
+    },
+    {
+      "term": "GraphQL",
+      "definition": "A query language for APIs that allows clients to request exactly the data they need.",
+      "pronunciation": "/ˈɡræf kjuː ɛl/",
+      "translation": "Lenguaje de consultas para APIs",
+      "example": "GraphQL reduces over-fetching of data compared to REST.",
+      "category": "Programming"
+    },
+    {
+      "term": "SSR",
+      "definition": "(Server-Side Rendering) The process of rendering web pages on the server instead of the client.",
+      "pronunciation": "/ˈsɜːrvər saɪd ˈrɛndərɪŋ/",
+      "translation": "Renderizado del lado del servidor",
+      "example": "Next.js enables SSR for better SEO performance.",
+      "category": "Web Development"
+    },
+    {
+      "term": "Learning",
+      "definition": "The process of acquiring knowledge or skills.",
+      "pronunciation": "/ˈlɜːrnɪŋ/",
+      "translation": "Aprendizaje",
+      "example": "Learning new skills is essential for personal growth.",
+      "category": "General"
+    },
+    {
+      "term": "Design",
+      "definition": "The process of creating visual or physical objects, systems, or experiences that are aesthetically pleasing and functional.",
+      "pronunciation": "/dɪˈzaɪn/",
+      "translation": "Diseño",
+      "example": "The app's design is modern and user-friendly.",
+      "category": "Web Development"
+    },
+    {
+      "term": "Algorithm",
+      "definition": "A step-by-step procedure for solving a problem or performing a computation.",
+      "pronunciation": "/ˈælɡəˌrɪðəm/",
+      "translation": "Algoritmo",
+      "example": "The search engine uses a complex algorithm to rank results.",
+      "category": "Programming"
+    },
+    {
+      "term": "Architecture",
+      "definition": "The overall design and structure of a system, application, or network.",
+      "pronunciation": "/ˈɑːkɪˌtɛkʧər/",
+      "translation": "Arquitectura",
+      "example": "The software architecture must support future scaling.",
+      "category": "Programming"
+    },
+    {
+      "term": "Artificial Intelligence",
+      "definition": "The simulation of human intelligence in machines.",
+      "pronunciation": "/ˌɑːrtɪˈfɪʃəl ɪnˈtɛlɪdʒəns/",
+      "translation": "Inteligencia artificial",
+      "example": "Artificial intelligence is transforming every industry.",
+      "category": "Technology"
+    },
+    {
+      "term": "Python",
+      "definition": "A high-level, interpreted programming language known for its readability and versatility.",
+      "pronunciation": "/ˈpaɪθən/",
+      "translation": "Python",
+      "example": "Python is widely used for web development, data science, and automation.",
+      "category": "Programming Language"
+    },
+    {
+      "term": "Elixir",
+      "definition": "A functional, concurrent language built on the Erlang VM, ideal for scalable applications.",
+      "pronunciation": "/ɪˈlɪksər/",
+      "translation": "Elixir",
+      "example": "Elixir powers applications that need high concurrency.",
+      "category": "Programming Language"
+    },
+    {
+      "term": "Prototype",
+      "definition": "An early model of a product used to test concepts and functionality.",
+      "pronunciation": "/ˈproʊtəˌtaɪp/",
+      "translation": "Prototipo",
+      "example": "We created a prototype before building the final app.",
+      "category": "Design"
+    },
+    {
+      "term": "Workflow",
+      "definition": "A series of tasks or steps to complete a process efficiently.",
+      "pronunciation": "/ˈwɜːrkfloʊ/",
+      "translation": "Flujo de trabajo",
+      "example": "We optimized our workflow to save time on repetitive tasks.",
+      "category": "General"
+    },
+    {
+      "term": "Bug Fix",
+      "definition": "The act of correcting an error in code or software.",
+      "pronunciation": "/bʌɡ fɪks/",
+      "translation": "Corrección de errores",
+      "example": "The team deployed a bug fix for the login issue.",
+      "category": "Programming"
+    },
+    {
+      "term": "TypeScript",
+      "definition": "A typed superset of JavaScript that compiles to plain JavaScript.",
+      "pronunciation": "/ˈtaɪpˌskrɪpt/",
+      "translation": "TypeScript",
+      "example": "We rewrote the frontend using TypeScript for better maintainability.",
+      "category": "Programming Language"
+    },
+    {
+      "term": "Data Scientist",
+      "definition": "A professional who analyzes and interprets complex data to help companies make decisions.",
+      "pronunciation": "/ˈdeɪtə ˈsaɪəntɪst/",
+      "translation": "Científico de datos",
+      "example": "The data scientist created predictive models for sales.",
+      "category": "Data"
+    },
+    {
+      "term": "PostgreSQL",
+      "definition": "An advanced open-source relational database system.",
+      "pronunciation": "/ˈpoʊstɡreɪ ˌɛs kjuː ˈɛl/",
+      "translation": "PostgreSQL",
+      "example": "The application stores all its data in PostgreSQL.",
+      "category": "Database"
+    },
+    {
+      "term": "Data Engineering",
+      "definition": "The process of designing and managing systems for collecting, storing, and analyzing data.",
+      "pronunciation": "/ˈdeɪtə ˌɛnʤɪˈnɪərɪŋ/",
+      "translation": "Ingeniería de datos",
+      "example": "Data engineering is crucial for analytics pipelines.",
+      "category": "Data"
+    },
+    {
+      "term": "Cybersecurity",
+      "definition": "The practice of protecting systems, networks, and data from digital attacks.",
+      "pronunciation": "/ˌsaɪbərsɪˈkjʊrəti/",
+      "translation": "Ciberseguridad",
+      "example": "The cybersecurity analyst detected a potential breach.",
+      "category": "Security"
+    },
+    {
+      "term": "Testing",
+      "definition": "The process of testing a system's security to identify vulnerabilities.",
+      "pronunciation": "/ˈtɛstɪŋ/",
+      "translation": "Pruebas",
+      "example": "We conduct regular testing to identify security weaknesses.",
+      "category": "Security"
+    },
+    {
+      "term": "Flutter",
+      "definition": "A UI toolkit from Google to build natively compiled applications for mobile, web, and desktop.",
+      "pronunciation": "/ˈflʌtər/",
+      "translation": "Flutter",
+      "example": "The app was built with Flutter for cross-platform deployment.",
+      "category": "Web/Mobile Development"
+    },
+    {
+      "term": "gitignore",
+      "definition": "A file that specifies intentionally untracked files to ignore.",
+      "pronunciation": "/ˈɪtɪɡɪtˌɪgnɔər/",
+      "translation": "gitignore",
+      "example": "Add `.env` to `.gitignore` to keep sensitive data out of version control.",
+      "category": "Entorno de desarrollo"
     }
   ]
 }
